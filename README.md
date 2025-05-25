@@ -50,7 +50,7 @@ Travello is built around three primary features to provide a seamless and secure
     * **LLMs:** Gemini (Google) / Groq (Llama 3.1 or similar) for intent parsing and route structuring
     * **Geocoding & POI:** Ola Maps API (Autocomplete, Nearby Search, Geocode)
     * **Public Transit Routing:** OpenTripPlanner (OTP) instance
-    * **Hosting (Assumed):** Flask/FastAPI or similar for the LangGraph service endpoint.
+    * **Hosting :** Flask for the LangGraph service endpoint.
 
 * **Rapid Response System (Emergency Handling):**
     * **Language/Framework:** Python, Flask
@@ -89,76 +89,6 @@ Travello is built around three primary features to provide a seamless and secure
     * **PostgreSQL with PostGIS:** Stores locations of emergency services (police stations, hospitals, fire brigades) for efficient geospatial querying.
     * *(Implicit)* **OpenTripPlanner Data:** OTP uses its own graph representation built from GTFS feeds or similar (scraped Mumbai data in this case).
 
-## ⚙️ Setup & Installation
-
-(Provide general instructions here. Specifics would depend on your exact setup environment, API key management, etc.)
-
-1.  **Prerequisites:**
-    * Node.js and npm/yarn
-    * Expo CLI
-    * Python 3.8+
-    * Access to a PostgreSQL server with PostGIS extension enabled.
-    * An OpenTripPlanner server instance configured with Mumbai transport data.
-    * API keys for Google (Gemini), Groq, and Ola Maps.
-
-2.  **Frontend (React Native - Travello App):**
-    ```bash
-    # Clone the repository
-    git clone <your-repo-url>
-    cd <frontend-folder-name>
-
-    # Install dependencies
-    npm install
-    # or
-    yarn install
-
-    # Set up environment variables (e.g., in a .env file)
-    # EXPO_PUBLIC_BACKEND_IP=<your_flask_backend_ip_for_safety_feature>
-    # EXPO_PUBLIC_MACHINE_IP=<your_langgraph_service_ip>
-    # (Add any other necessary Expo environment variables)
-
-    # Run the app
-    npx expo start
-    ```
-    *Follow instructions in the terminal to open on a simulator or physical device via Expo Go.*
-
-3.  **Backend Services:**
-    * **Rapid Response (Flask - `app.py`):**
-        ```bash
-        cd <safety_backend_folder_name> # e.g., where app.py is
-        pip install -r requirements.txt # (You'll need to create a requirements.txt)
-
-        # Set up environment variables (e.g., in a .env file or system variables)
-        # GOOGLE_API_KEY=your_google_api_key
-        # GROQ_API_KEY=your_groq_api_key
-        # DB_NAME=your_db_name
-        # DB_USER=your_db_user
-        # DB_PASSWORD=your_db_password
-        # DB_HOST=your_db_host
-        # DB_PORT=your_db_port
-
-        # Run the Flask app
-        python app.py
-        ```
-        *Ensure your PostgreSQL database is running and accessible, and the necessary tables (police, hospital, firebrigade) with geodata are created.*
-
-    * **Smart Travel Assistant (LangGraph - `graph.py`):**
-        ```bash
-        cd <assistant_backend_folder_name> # e.g., where graph.py is
-        pip install -r requirements.txt # (You'll need to create a requirements.txt)
-
-        # Set up environment variables (e.g., in a .env file or system variables)
-        # GROQ_API_KEY=your_groq_api_key
-        # GEMINI_API_KEY=your_google_api_key
-        # OLA_API_KEY=your_ola_maps_api_key
-        # HERE_API_KEY=your_here_api_key (if used, mentioned in graph.py but not directly in flow)
-        # MACHINE_IP=<ip_of_otp_server_if_different_or_localhost>
-        # LANGSMITH_API_KEY=your_langsmith_key (optional, for tracing)
-
-        # Run the LangGraph service (e.g., wrap graph.py in a FastAPI/Flask endpoint)
-        # Example: python assistant_server.py (you'd need to create this server file)
-        ```
-        *Ensure your OpenTripPlanner server is running and accessible.*
 
 ## 🚀 Usage
 
